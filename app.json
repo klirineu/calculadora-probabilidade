@@ -31,6 +31,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "5b5a111b-59ca-482c-a418-b5ec4417541a"
+      }
+    },
+    "owner": "klirineu"
   }
 }
