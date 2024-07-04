@@ -1,34 +1,29 @@
 {
   "expo": {
-    "name": "calculadora-app",
+    "name": "one_X_two",
     "slug": "calculadora-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
     "scheme": "myapp",
+    "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "buildNumber": "1"
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+      "package": "com.klirineu.calculadoraprobabilidade",
+      "versionCode": 1
     },
     "web": {
       "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "output": "static"
     },
-    "plugins": [
-      "expo-router"
-    ],
+    "plugins": ["expo-router"],
     "experiments": {
       "typedRoutes": true
     },
@@ -40,6 +35,12 @@
         "projectId": "5b5a111b-59ca-482c-a418-b5ec4417541a"
       }
     },
-    "owner": "klirineu"
+    "owner": "klirineu",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/5b5a111b-59ca-482c-a418-b5ec4417541a"
+    }
   }
 }

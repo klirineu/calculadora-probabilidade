@@ -1,8 +1,8 @@
 // Calculator.tsx
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, ScrollView, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { Text, TextInput, ScrollView, StyleSheet, TouchableOpacity, View, Image } from 'react-native';
 import { useRouter } from 'expo-router';
+import cruzIcon from "../assets/images/cruz.png"
 
 const Calculator = () => {
   const [equipeA, setEquipeA] = useState('');
@@ -23,7 +23,7 @@ const Calculator = () => {
   const [ambasMarcamB, setAmbasMarcamB] = useState('');
   const navigation = useRouter();
 
-  const handleCalculate = () => {
+  function handleCalculate() {
     const v1 = parseInt(vitoriasA) + parseInt(derrotasB) / 10 * 4.5;
     const x = parseInt(empatesA) + parseInt(empatesB) / 10 * 4.5;
     const v2 = parseInt(vitoriasB) + parseInt(derrotasA) / 10 * 4.5;
@@ -126,7 +126,7 @@ const Calculator = () => {
 
     const item = {
       resultado: classificacaoResultado,
-      resultado2: `${equipeA} VS ${equipeB}`,
+      resultado2: `${equipeA.toUpperCase()} VS ${equipeB.toUpperCase()}`,
       simple,
       overUnder,
       bts,
@@ -140,57 +140,120 @@ const Calculator = () => {
     navigation.push({ pathname: 'results', params: item });
   }
 
+  function handleReset() {
+    setEquipeA("")
+    setEquipeB("")
+    setVitoriasA("")
+    setEmpatesA("")
+    setDerrotasA("")
+    setVitoriasB("")
+    setEmpatesB("")
+    setDerrotasB("")
+    setCartoesVermelhosA("")
+    setCartoesVermelhosB("")
+    setGolsMarcadosA("")
+    setGolsSofridosA("")
+    setGolsMarcadosB("")
+    setGolsSofridosB("")
+    setAmbasMarcamA("")
+    setAmbasMarcamB("")
+  }
+
   return (
     <ScrollView style={styles.container}>
-      <Text>Equipe A:</Text>
-      <TextInput style={styles.input} onChangeText={setEquipeA} value={equipeA} />
+      <View style={[styles.divRow, { marginTop: 40 }]}>
+        <View style={{ width: "40%" }}>
+          <Text style={{ alignSelf: "center", marginBottom: 20, fontWeight: "bold", fontSize: 18 }}>Team A</Text>
+          <TextInput style={styles.input} onChangeText={setEquipeA} value={equipeA} />
+        </View>
+        <Image source={cruzIcon} style={{ width: 20, height: 20, marginTop: 20 }} />
+        <View style={{ width: "40%" }}>
+          <Text style={{ alignSelf: "center", marginBottom: 20, fontWeight: "bold", fontSize: 18 }}>Team B:</Text>
+          <TextInput style={styles.input} onChangeText={setEquipeB} value={equipeB} />
+        </View>
+      </View>
 
-      <Text>Equipe B:</Text>
-      <TextInput style={styles.input} onChangeText={setEquipeB} value={equipeB} />
+      <View style={styles.divRow}>
+        <View style={{ width: "20%" }}>
+          <TextInput style={styles.input} onChangeText={setVitoriasA} value={vitoriasA} keyboardType="numeric" />
+        </View>
+        <Text style={styles.text}>Vitorias</Text>
+        <View style={{ width: "20%" }}>
+          <TextInput style={styles.input} onChangeText={setVitoriasB} value={vitoriasB} keyboardType="numeric" />
+        </View>
+      </View>
 
-      <Text>Vitórias Equipe A:</Text>
-      <TextInput style={styles.input} onChangeText={setVitoriasA} value={vitoriasA} keyboardType="numeric" />
+      <View style={styles.divRow}>
+        <View style={{ width: "20%" }}>
+          <TextInput style={styles.input} onChangeText={setEmpatesA} value={empatesA} keyboardType="numeric" />
+        </View>
+        <Text style={styles.text}>Empates</Text>
 
-      <Text>Empates Equipe A:</Text>
-      <TextInput style={styles.input} onChangeText={setEmpatesA} value={empatesA} keyboardType="numeric" />
+        <View style={{ width: "20%" }}>
+          <TextInput style={styles.input} onChangeText={setEmpatesB} value={empatesB} keyboardType="numeric" />
+        </View>
+      </View>
 
-      <Text>Derrotas Equipe A:</Text>
-      <TextInput style={styles.input} onChangeText={setDerrotasA} value={derrotasA} keyboardType="numeric" />
+      <View style={styles.divRow}>
+        <View style={{ width: "20%" }}>
+          <TextInput style={styles.input} onChangeText={setDerrotasA} value={derrotasA} keyboardType="numeric" />
 
-      <Text>Vitórias Equipe B:</Text>
-      <TextInput style={styles.input} onChangeText={setVitoriasB} value={vitoriasB} keyboardType="numeric" />
+        </View>
+        <Text style={styles.text}>Derrotas</Text>
+        <View style={{ width: "20%" }}>
+          <TextInput style={styles.input} onChangeText={setDerrotasB} value={derrotasB} keyboardType="numeric" />
+        </View>
+      </View>
 
-      <Text>Empates Equipe B:</Text>
-      <TextInput style={styles.input} onChangeText={setEmpatesB} value={empatesB} keyboardType="numeric" />
+      <View style={styles.divRow}>
+        <View style={{ width: "20%" }}>
+          <TextInput style={styles.input} onChangeText={setCartoesVermelhosA} value={cartoesVermelhosA} keyboardType="numeric" />
+        </View>
+        <Text style={styles.text}>Red card</Text>
+        <View style={{ width: "20%" }}>
+          <TextInput style={styles.input} onChangeText={setCartoesVermelhosB} value={cartoesVermelhosB} keyboardType="numeric" />
+        </View>
+      </View>
 
-      <Text>Derrotas Equipe B:</Text>
-      <TextInput style={styles.input} onChangeText={setDerrotasB} value={derrotasB} keyboardType="numeric" />
+      <View style={styles.divRow}>
+        <View style={{ width: "20%" }}>
+          <TextInput style={styles.input} onChangeText={setGolsMarcadosA} value={golsMarcadosA} keyboardType="numeric" />
+        </View>
+        <Text style={styles.text}>Marcados</Text>
+        <View style={{ width: "20%" }}>
+          <TextInput style={styles.input} onChangeText={setGolsMarcadosB} value={golsMarcadosB} keyboardType="numeric" />
+        </View>
+      </View>
 
-      <Text>Cartões Vermelhos Equipe A:</Text>
-      <TextInput style={styles.input} onChangeText={setCartoesVermelhosA} value={cartoesVermelhosA} keyboardType="numeric" />
 
-      <Text>Cartões Vermelhos Equipe B:</Text>
-      <TextInput style={styles.input} onChangeText={setCartoesVermelhosB} value={cartoesVermelhosB} keyboardType="numeric" />
 
-      <Text>Gols Marcados Equipe A:</Text>
-      <TextInput style={styles.input} onChangeText={setGolsMarcadosA} value={golsMarcadosA} keyboardType="numeric" />
+      <View style={styles.divRow}>
+        <View style={{ width: "20%" }}>
+          <TextInput style={styles.input} onChangeText={setGolsSofridosA} value={golsSofridosA} keyboardType="numeric" />
+        </View>
+        <Text style={styles.text}>Sofridos</Text>
+        <View style={{ width: "20%" }}>
+          <TextInput style={styles.input} onChangeText={setGolsSofridosB} value={golsSofridosB} keyboardType="numeric" />
+        </View>
+      </View>
 
-      <Text>Gols Sofridos Equipe A:</Text>
-      <TextInput style={styles.input} onChangeText={setGolsSofridosA} value={golsSofridosA} keyboardType="numeric" />
+      <View style={styles.divRow}>
+        <View style={{ width: "20%" }}>
+          <TextInput style={styles.input} onChangeText={setAmbasMarcamA} value={ambasMarcamA} keyboardType="numeric" />
+        </View>
+        <Text style={styles.text}>Ambas</Text>
+        <View style={{ width: "20%" }}>
+          <TextInput style={styles.input} onChangeText={setAmbasMarcamB} value={ambasMarcamB} keyboardType="numeric" />
+        </View>
+      </View>
 
-      <Text>Gols Marcados Equipe B:</Text>
-      <TextInput style={styles.input} onChangeText={setGolsMarcadosB} value={golsMarcadosB} keyboardType="numeric" />
+      <TouchableOpacity style={[styles.button, { marginTop: 40 }]} onPress={handleCalculate}>
+        <Text style={styles.text}>Calcular</Text>
+      </TouchableOpacity>
 
-      <Text>Gols Sofridos Equipe B:</Text>
-      <TextInput style={styles.input} onChangeText={setGolsSofridosB} value={golsSofridosB} keyboardType="numeric" />
-
-      <Text>Ambas Marcam Equipe A:</Text>
-      <TextInput style={styles.input} onChangeText={setAmbasMarcamA} value={ambasMarcamA} keyboardType="numeric" />
-
-      <Text>Ambas Marcam Equipe B:</Text>
-      <TextInput style={styles.input} onChangeText={setAmbasMarcamB} value={ambasMarcamB} keyboardType="numeric" />
-
-      <Button title="Calcular" onPress={handleCalculate} />
+      <TouchableOpacity style={[styles.button, { backgroundColor: "black" }]} onPress={handleReset}>
+        <Text style={[styles.text, { color: "white" }]}>RESET</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 }
@@ -200,6 +263,12 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
   },
+  divRow: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
   input: {
     height: 40,
     borderColor: 'gray',
@@ -207,6 +276,21 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingLeft: 8,
   },
+  button: {
+    marginTop: 10,
+    marginBottom: 10,
+    backgroundColor: "rgba(0,0,0,0.3)",
+    width: "50%",
+    alignSelf: "center",
+    paddingHorizontal: 10,
+    paddingVertical: 15,
+    alignItems: "center",
+
+  },
+  text: {
+    fontWeight: "bold",
+    fontSize: 16
+  }
 });
 
 export default Calculator;

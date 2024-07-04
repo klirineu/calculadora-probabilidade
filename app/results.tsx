@@ -20,16 +20,16 @@ const Results = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Resultado: {resultado}</Text>
-      <Text>Resultado 2: {resultado2}</Text>
-      <Text>Simple: {simple}</Text>
-      <Text>Over/Under: {overUnder}</Text>
-      <Text>BTS: {bts}</Text>
-      <Text>Dupla Hipótese: {duplaHipotesse}</Text>
-      <Text>Percentagem P1: {percentagemP1}</Text>
-      <Text>Percentagem PX: {percentagemPX}</Text>
-      <Text>Percentagem P2: {percentagemP2}</Text>
-      <Text>Percentagem BTS: {percentagemBtts}</Text>
+      <Text style={[styles.textResult, { marginBottom: 50, marginTop: -50, fontSize: 50 }]}>{resultado2}</Text>
+      <Text style={styles.text}>Simples: {simple}</Text>
+      <Text style={styles.text}>Over/Under: {overUnder}</Text>
+      <Text style={styles.text}>Btts: {bts}</Text>
+      <Text style={styles.text}>Dupla Hipótese: {duplaHipotesse}</Text>
+      <Text style={styles.text}>Percentagem v1: {percentagemP1}</Text>
+      <Text style={styles.text}>Percentagem vX: {percentagemPX}</Text>
+      <Text style={styles.text}>Percentagem v2: {percentagemP2}</Text>
+      <Text style={styles.text}>Percentagem BTS: {percentagemBtts}</Text>
+      <Text style={[styles.textResult, { fontWeight: "bold", fontSize: 32 }]}>Nossa Aposta: {resultado}</Text>
     </View>
   );
 }
@@ -38,7 +38,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
+  text: {
+    fontSize: 20,
+    marginBottom: 8,
+    textAlign: "left",
+    alignSelf: "flex-start"
+  },
+  textResult: {
+    fontSize: 30,
+    marginTop: 15,
+    marginBottom: 15,
+    textAlign: "center",
+    alignSelf: "center"
+  }
 });
 
 export default Results;
